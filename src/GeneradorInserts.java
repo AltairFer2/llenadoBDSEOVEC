@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Random;
-import org.json.JSONObject;
 
 public class GeneradorInserts {
     private static String[] nombres = { "Pepe", "Luis", "Fernando", "Miguel", "Gerardo", "Antonio", "Angel", "David",
@@ -23,12 +22,114 @@ public class GeneradorInserts {
             "1993-12-18", "1997-02-28", "2000-04-10", "2005-06-23", "2010-12-31" };
     private static String[] correos = { "A1@gmail.com", "B2@gmail.com", "C3@gmail.com", "D4@gmail.com", "E5@gmail.com",
             "F6@gmail.com", "G7@gmail.com", "H8@gmail.com", "I9@gmail.com", "J10@gmail.com" };
-    private static int[] idCatalogoUsuarios = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
+    private static int[] idCatalogoUsuarios = { 1, 2 };
     private static long[] telefonos = { 5551112233L, 5552223344L, 5553334455L, 5554445566L, 5555556677L, 5556667788L,
             5557778899L, 5558889900L, 5559990011L, 5550001122L };
 
-    private static int[] idCatalogoPerfiles = { 1, 2, 3 };
-    private static int[] idFeedbacks = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 };
+    private static int[] idCatalogoPerfiles = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
+
+    private static String[] comentarios = {
+            "Me encanta este sistema, me ayudó a descubrir mis intereses y habilidades.",
+            "Es muy fácil de usar y proporciona información detallada sobre diferentes carreras.",
+            "Gracias a este sistema, ahora tengo una dirección clara para mi futuro profesional.",
+            "Me ayudó a explorar opciones que nunca había considerado antes.",
+            "Las pruebas de personalidad fueron precisas y útiles.",
+            "Este sistema es esencial para cualquier persona que esté indecisa sobre su carrera.",
+            "Me proporcionó valiosos recursos para investigar más sobre las carreras que me interesan.",
+            "La interfaz es intuitiva y fácil de navegar.",
+            "Recibí orientación personalizada basada en mis respuestas.",
+            "Es una herramienta valiosa para estudiantes en transición de la escuela secundaria a la universidad.",
+            "Ofrece consejos prácticos para la planificación de la carrera.",
+            "El sistema tiene una amplia base de datos de información sobre profesiones.",
+            "Me ayudó a comprender mis fortalezas y debilidades en términos de habilidades laborales.",
+            "Es genial para descubrir carreras que se alinean con mis pasiones.",
+            "Las evaluaciones de intereses son muy acertadas.",
+            "Me brindó confianza al tomar decisiones sobre mi futuro académico y profesional.",
+            "El sistema considera aspectos prácticos como la demanda laboral y las perspectivas de salario.",
+            "Las recomendaciones personalizadas fueron precisas y útiles.",
+            "Me hizo reflexionar sobre lo que realmente quiero en una carrera.",
+            "Una herramienta esencial para estudiantes que buscan orientación profesional.",
+            "Ofrece información detallada sobre el mercado laboral actual.",
+            "Los informes de resultados son fáciles de entender y proporcionan información valiosa.",
+            "Este sistema marcó la diferencia en mi toma de decisiones sobre la carrera.",
+            "Fue una experiencia enriquecedora que me ayudó a conocerme mejor.",
+            "La variedad de pruebas y evaluaciones cubre todos los aspectos importantes.",
+            "Me brindó claridad en un momento en que estaba confundido sobre mi futuro profesional.",
+            "Las recomendaciones fueron específicas y adaptadas a mis intereses.",
+            "Este sistema debería implementarse en todas las escuelas.",
+            "Una herramienta invaluable para planificar una carrera a largo plazo.",
+            "Es una guía efectiva para descubrir vocaciones alineadas con mi personalidad.",
+            "Me proporcionó información útil sobre las habilidades requeridas en diferentes campos.",
+            "La retroalimentación detallada me ayudó a entender mis preferencias profesionales.",
+            "Fue una experiencia reflexiva que me llevó a considerar nuevas posibilidades.",
+            "Me ayudó a establecer metas realistas para mi futuro profesional.",
+            "Las recomendaciones de carreras coincidieron con mis intereses y valores.",
+            "Este sistema hizo que la planificación de la carrera fuera emocionante y no abrumadora.",
+            "Las pruebas de habilidades fueron útiles para identificar áreas de mejora.",
+            "Me proporcionó una visión clara de cómo mis habilidades pueden aplicarse en el mundo laboral.",
+            "Las entrevistas virtuales de práctica fueron una adición útil.",
+            "Me dio la confianza para explorar carreras que nunca había considerado antes.",
+            "Ofrece recursos informativos sobre programas educativos y capacitación.",
+            "La guía paso a paso facilita la navegación por el proceso de toma de decisiones.",
+            "Me proporcionó una visión realista de lo que implica cada carrera.",
+            "Las evaluaciones de valores fueron esenciales para alinear mi carrera con mis creencias.",
+            "Fue una experiencia educativa que cambió mi perspectiva sobre las opciones profesionales.",
+            "Este sistema me dio la confianza para perseguir una carrera que realmente amo.",
+            "Las opciones de carrera recomendadas fueron diversas y emocionantes.",
+            "Es una herramienta valiosa para explorar carreras emergentes y en crecimiento.",
+            "Las sugerencias de desarrollo profesional fueron perspicaces y aplicables.",
+            "Me proporcionó información sobre oportunidades de trabajo en el extranjero.",
+            "Las evaluaciones de habilidades blandas fueron una adición valiosa.",
+            "Este sistema me inspiró a considerar carreras que están en demanda actualmente.",
+            "Las herramientas de exploración de carreras fueron intuitivas y esclarecedoras.",
+            "Fue una guía esencial durante mi transición de la educación secundaria a la universidad.",
+            "Me dio confianza al tomar decisiones importantes sobre mi futuro.",
+            "Las recomendaciones de carrera se ajustaron a mis metas a largo plazo.",
+            "Este sistema me ayudó a identificar mis pasiones y convertirlas en una carrera.",
+            "Me proporcionó recursos para investigar programas de estudio específicos.",
+            "Las pruebas de aptitud fueron una herramienta útil para evaluar mis habilidades.",
+            "Fue una experiencia educativa valiosa que contribuyó a mi desarrollo personal.",
+            "Me ayudó a entender cómo mis intereses pueden traducirse en opciones de carrera.",
+            "Las evaluaciones de personalidad fueron sorprendentemente precisas.",
+            "Me proporcionó información valiosa sobre el crecimiento proyectado en diferentes industrias.",
+            "Las recomendaciones de educación continua fueron útiles para planificar mi desarrollo profesional.",
+            "Este sistema hizo que el proceso de toma de decisiones sobre la carrera fuera emocionante.",
+            "Me brindó una visión completa de las oportunidades laborales en mi campo de interés.",
+            "Fue una guía esencial para navegar por las opciones educativas y profesionales.",
+            "Las evaluaciones de fortalezas y debilidades fueron esclarecedoras y motivadoras.",
+            "Me ayudó a conectar mis intereses con carreras específicas y alcanzables.",
+            "Las entrevistas simuladas me dieron confianza para enfrentar futuras entrevistas reales.",
+            "Este sistema hizo que el proceso de exploración de carreras fuera emocionante.",
+            "Me proporcionó información esencial sobre la formación necesaria para diferentes profesiones.",
+            "Las evaluaciones de compatibilidad con el trabajo en equipo fueron esenciales.",
+            "Fue una herramienta valiosa para identificar oportunidades de crecimiento en mi campo.",
+            "Me dio una perspectiva clara de las diferentes etapas de una carrera.",
+            "Las evaluaciones de satisfacción laboral fueron informativas y reveladoras.",
+            "Me proporcionó una lista detallada de habilidades necesarias para mi campo de interés.",
+            "Este sistema es esencial para estudiantes que buscan una educación superior bien informada.",
+            "Las sugerencias de desarrollo profesional fueron adaptadas a mis metas individuales.",
+            "Me ayudó a identificar carreras que alinean con mis valores y ética personal.",
+            "Las pruebas de compatibilidad con la cultura organizativa fueron útiles para elegir empresas.",
+            "Fue una experiencia enriquecedora que contribuyó a mi autoconocimiento.",
+            "Me proporcionó información sobre oportunidades de trabajo remoto.",
+            "Las evaluaciones de gestión del tiempo fueron prácticas y aplicables.",
+            "Este sistema me dio confianza para explorar campos que desconocía anteriormente.",
+            "Me proporcionó recursos para encontrar programas de capacitación específicos.",
+            "Las sugerencias de carreras alternativas fueron valiosas para considerar diferentes caminos.",
+            "Fue una herramienta esencial para planificar una educación superior centrada en la carrera.",
+            "Me dio una comprensión detallada de las expectativas laborales en diferentes campos.",
+            "Las evaluaciones de liderazgo fueron esclarecedoras y motivadoras.",
+            "Este sistema me brindó una guía paso a paso para explorar opciones de carrera.",
+            "Me ayudó a entender cómo mis valores personales pueden influir en mi elección de carrera.",
+            "Las pruebas de adaptabilidad fueron útiles para evaluar mi capacidad para enfrentar cambios.",
+            "Fue una experiencia educativa que preparó adecuadamente para mi futura carrera.",
+            "Me proporcionó información detallada sobre las habilidades requeridas en la industria actual.",
+            "Las evaluaciones de ética laboral fueron esenciales para alinear mi carrera con mis valores.",
+            "Este sistema me brindó recursos para explorar programas académicos específicos.",
+            "Me ayudó a considerar opciones de carrera que no habría explorado por mi cuenta.",
+            "Las sugerencias de desarrollo personal fueron motivadoras y aplicables.",
+            "Fue una herramienta esencial para tomar decisiones informadas sobre mi educación superior."
+    };
 
     public static void main(String[] args) {
         try {
@@ -79,6 +180,11 @@ public class GeneradorInserts {
                 "Ing. En Sistemas Computacionales"
         };
 
+        String[] tipoUsuario = {
+                "normal",
+                "administrador",
+        };
+
         String[] descripciones = {
                 "Los aspirantes a ingresar al programa de Arquitectura preferentemente deberán mostrar una inclinación a las ciencias físico-matemáticas y humanidades, contar con capacidad analítica y deductiva, gran interés por el arte y la cultura, así como comprensión y visualización espacial, capacidad de síntesis y concretar pensamientos abstractos, interés por la ecología y la sustentabilidad, conocimientos elementales sobre representación gráfica, habilidad numérica y conocimientos de inglés.",
                 "Las y los estudiantes al ingresar deberán tener habilidades para la comunicación oral y escrita, capacidad de reacción ante diferentes situaciones con actitud proactiva y responsable. Tener iniciativa, contar con la capacidad para establecer relaciones interpersonales, trabajo en equipo y apertura para conocer otras culturas al igual que desarrollar una segunda lengua.",
@@ -92,8 +198,6 @@ public class GeneradorInserts {
                 "Capacidad para integrar soluciones tecnológicas innovadoras. Disciplina en el cumplimiento de las normas de convivencia, el medio ambiente y la libertad. Habilidad de emprendimiento y gestión para incursionar en el sector de los negocios tecnológicos de semiconductores.",
                 "El y la estudiante al ingresar, deberá tener habilidades matemáticas y lógicas, capacidad de análisis y síntesis de información, habilidades de investigación, así como interés por la computación y la programación, disposición para trabajar en equipo y sentido de compromiso social."
         };
-
-        // Genera e escribe los inserts para la tabla 'cuestionario' en el archivo
         String[] preguntas = {
                 "¿Qué actividades o pasatiempos disfrutas hacer en tu tiempo libre?",
                 "¿Cuáles son tus habilidades y talentos naturales?",
@@ -255,9 +359,11 @@ public class GeneradorInserts {
                 "bx) Mi interés por la moda sostenible y ética me lleva a considerar carreras en moda sostenible, diseño ético o gestión sostenible.",
         };
 
-        for (int i = 0; i < cantidad; i++) {
-            String insertUsuario = generarInsertAleatorio();
-            writer.write(insertUsuario + "\n");
+        for (int i = 0; i < tipoUsuario.length; i++) {
+            String insertPerfil = String.format(
+                    "INSERT INTO catalogoUsuario (id_Catalogo_Usuario, tipoUsuario) VALUES (%d, '%s');",
+                    i + 1, tipoUsuario[i]);
+            writer.write(insertPerfil + "\n");
         }
 
         for (int i = 0; i < carrera.length; i++) {
@@ -279,6 +385,31 @@ public class GeneradorInserts {
             writer.write(insertRespuesta + "\n");
         }
 
+        for (int i = 0; i < cantidad; i++) {
+            String insertUsuario = generarInsertAleatorio(cantidad);
+            writer.write(insertUsuario + "\n");
+        }
+
+        for (int i = 0; i < cantidad; i++) {
+            String insertRC = generarInsertAleatorioRC();
+            writer.write(insertRC + "\n");
+        }
+
+        for (int i = 0; i < cantidad; i++) {
+            String insertCP = generarInsertAleatorioCP();
+            writer.write(insertCP + "\n");
+        }
+
+        for (int i = 0; i < cantidad; i++) {
+            String insertCP = generarInsertAleatorioUC(cantidad);
+            writer.write(insertCP + "\n");
+        }
+
+        for (int i = 0; i < cantidad; i++) {
+            String insertCP = generarInsertAleatorioFeedback(cantidad);
+            writer.write(insertCP + "\n");
+        }
+
         // Cierra el archivo
         writer.close();
     }
@@ -293,7 +424,20 @@ public class GeneradorInserts {
         }
     }
 
-    private static String generarInsertAleatorio() {
+    private static int contadorFeedback = 1;
+
+    private static String generarInsertAleatorioFeedback(int cantidadUsuarios) {
+        int idFeedback = contadorFeedback++; // Incrementa el contador de carreras
+        Random random = new Random();
+
+        String comentario = comentarios[random.nextInt(comentarios.length)];
+        int calificacion = random.nextInt(5) + 1; // Calificación aleatoria entre 1 y 5
+
+        return String.format("INSERT INTO feedback (id_feedback, comentario, calificacion) VALUES (%d, '%s', %d);",
+                idFeedback, comentario, calificacion);
+    }
+
+    private static String generarInsertAleatorio(int cantidadUsuarios) {
         Random random = new Random();
 
         String nombre = nombres[random.nextInt(nombres.length)];
@@ -304,12 +448,46 @@ public class GeneradorInserts {
         int idCatalogoUsuario = idCatalogoUsuarios[random.nextInt(idCatalogoUsuarios.length)];
         long telefono = telefonos[random.nextInt(telefonos.length)];
         int idCatalogoPerfil = idCatalogoPerfiles[random.nextInt(idCatalogoPerfiles.length)];
-        int idFeedback = idFeedbacks[random.nextInt(idFeedbacks.length)];
+        int idFeedback = random.nextInt(cantidadUsuarios);
 
         return String.format("INSERT INTO usuario (nombre, apellido, contrasena, fecha_nacimiento, correo, " +
                 "id_catalogo_usuario, telefono, id_catalogo_perfil, id_feedback) VALUES ('%s', '%s', '%s', '%s', '%s', %d, %d, %d, %d);",
                 nombre, apellido, contrasena, fechaNacimiento, correo, idCatalogoUsuario, telefono, idCatalogoPerfil,
                 idFeedback);
+    }
+
+    private static String generarInsertAleatorioRC() {
+        Random random = new Random();
+
+        int idPregunta = random.nextInt(100) + 1; // Ajusta según tu número de preguntas
+        int idRespuesta = random.nextInt(75) + 1; // Ajusta según tu número de respuestas
+
+        return String.format("INSERT INTO respuesta_cuestionario (id_cuestionario, id_respuesta) VALUES (%d, %d);",
+                idPregunta, idRespuesta);
+    }
+
+    private static int contadorCarrera = 1; // Variable para mantener el contador de carreras
+
+    private static String generarInsertAleatorioCP() {
+        int idCarrera = contadorCarrera++; // Incrementa el contador de carreras
+
+        Random random = new Random();
+        int tipoPerfilCarrera = random.nextInt(3) + 1; // Rango de tipo de perfil de 1 a 3
+        int tipoPerfilPersona = random.nextInt(3) + 1; // Rango de tipo de perfil de 1 a 3
+
+        return String.format(
+                "INSERT INTO catalogo_perfiles (id_catalogo_perfil, tipo_perfil_carrera, tipo_perfil_persona) VALUES (%d, %d, %d);",
+                idCarrera, tipoPerfilCarrera, tipoPerfilPersona);
+    }
+
+    private static String generarInsertAleatorioUC(int cantidadUsuarios) {
+        Random random = new Random();
+
+        int idPregunta = random.nextInt(100) + 1; // Ajusta según tu número de preguntas
+        int idUsuario = random.nextInt(cantidadUsuarios) + 1; // Ajusta según la cantidad de usuarios creados
+
+        return String.format("INSERT INTO usuario_cuestionario (id_cuestionario, id_usuario) VALUES (%d, %d);",
+                idPregunta, idUsuario);
     }
 
 }
