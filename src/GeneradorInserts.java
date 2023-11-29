@@ -4,17 +4,17 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Random;
+import org.json.JSONObject;
 
 public class GeneradorInserts {
-
-    private static String[] nombres = { "Pepe", "Luis", "Fernando", "Miguel", "Gerardo", "Antonio", "Ángel", "David",
-            "Leonardo", "Alejandro", "Víctor", "Alma", "Gabriela", "Andrea", "Marisol", "Luna", "Almanza", "Jairo",
-            "Fátima", "Noemi", "Ana", "Rosa", "Carolina", "Karla", "Carla", "Mía", "Jocelyn", "Gisel", "Karina",
-            "Yosef", "Martha", "Camila", "Esther", "Samantha", "Luisa", "María", "Guadalupe", "Dulce" };
-    private static String[] apellidos = { "López", "Rodríguez", "Sánchez", "Alvarado", "Vera", "Franco", "García",
-            "Vázquez", "Cervantes", "Flores", "Torres", "Arellano", "Monte Negro", "Torrecillas", "Cortez", "León",
-            "Bolaños", "Montecillo", "Gómez", "Palacios", "Anguiano", "Cabañas", "Prieto", "Aguilar", "Peasland",
-            "Rayón", "Colesio", "Maldonado" };
+    private static String[] nombres = { "Pepe", "Luis", "Fernando", "Miguel", "Gerardo", "Antonio", "Angel", "David",
+            "Leonardo", "Alejandro", "Victor", "Alma", "Gabriela", "Andrea", "Marisol", "Luna", "Almanza", "Jairo",
+            "Fatima", "Noemi", "Ana", "Rosa", "Carolina", "Karla", "Carla", "Mía", "Jocelyn", "Gisel", "Karina",
+            "Yosef", "Martha", "Camila", "Esther", "Samantha", "Luisa", "Maria", "Guadalupe", "Dulce" };
+    private static String[] apellidos = { "Lopez", "Rodriguez", "Sanchez", "Alvarado", "Vera", "Franco", "Garcia",
+            "Vazquez", "Cervantes", "Flores", "Torres", "Arellano", "Monte Negro", "Torrecillas", "Cortez", "Leon",
+            "Bolanos", "Montecillo", "Gomez", "Palacios", "Anguiano", "Cabañas", "Prieto", "Aguilar", "Peasland",
+            "Rayon", "Colesio", "Maldonado" };
     private static String[] contrasenas = { "root", "admin", "1234", "user", "Administrator", "administrador", "12345",
             "123456", "anonymous", "Anonymous", "admini", "zzzzz", "zxm10", "zxcxz", "zxcvbnm!@#$%^&", "zxcvbn",
             "zxcvb", "zxccxz", "zj!@#$%^&", "zhang123", "zhang", "zaqxswcdevfr", "zaqxswcde1472583", "zaqxswcde",
@@ -61,15 +61,37 @@ public class GeneradorInserts {
     }
 
     private static void generarYGuardarInserts(int cantidad) throws IOException {
+
         // Abre un archivo para escribir los inserts
         FileWriter writer = new FileWriter("C:\\Prueba\\inserts.txt", true); // true indica que se añadirá al final del
                                                                              // archivo
+        String[] carrera = {
+                "Lic. En Arquitectura",
+                "Lic. En Administración",
+                "Ing. Ambiental",
+                "Ing. Bioquímica",
+                "Ing. Electrónica",
+                "Ing. En Gestión Empresarial",
+                "Ing. Mecánica",
+                "Ing. Mecatrónica",
+                "Ing. Química",
+                "Ing. En Semiconductores",
+                "Ing. En Sistemas Computacionales"
+        };
 
-        // Genera e escribe los inserts para la tabla 'usuario' en el archivo
-        for (int i = 0; i < cantidad; i++) {
-            String insertUsuario = generarInsertAleatorio();
-            writer.write(insertUsuario + "\n");
-        }
+        String[] descripciones = {
+                "Los aspirantes a ingresar al programa de Arquitectura preferentemente deberán mostrar una inclinación a las ciencias físico-matemáticas y humanidades, contar con capacidad analítica y deductiva, gran interés por el arte y la cultura, así como comprensión y visualización espacial, capacidad de síntesis y concretar pensamientos abstractos, interés por la ecología y la sustentabilidad, conocimientos elementales sobre representación gráfica, habilidad numérica y conocimientos de inglés.",
+                "Las y los estudiantes al ingresar deberán tener habilidades para la comunicación oral y escrita, capacidad de reacción ante diferentes situaciones con actitud proactiva y responsable. Tener iniciativa, contar con la capacidad para establecer relaciones interpersonales, trabajo en equipo y apertura para conocer otras culturas al igual que desarrollar una segunda lengua.",
+                "Las y los estudiantes al ingresar, deberán tener afinidad para vincular el valor de los recursos naturales y servicios ambientales y promover su uso sustentable de acuerdo a las necesidades de la región, mediante instrumentos de concientización, sensibilización y comunicación. Participar en el desarrollo y ejecución de protocolos de investigación básica o aplicada para la resolución de los problemas ambientales.",
+                "Tener afinidad a las ciencias básicas como la biología, física, química y matemáticas, además de tener habilidad para la comunicación oral y escrita, así como la capacidad de reacción ante diferentes situaciones con actitud proactiva y responsable. Tener iniciativa y contar con la habilidad para establecer relaciones interpersonales y trabajo en equipo, estar dispuesto a incursionar en las ciencias biológicas como bioquímica, microbiología, bioquímica de los alimentos, microbiología industrial.",
+                "Las y los estudiantes deberán ser creativos, responsables con habilidades para el análisis matemático, el manejo de las Tics y manifestar gusto y afición por la tecnología y las ciencias.",
+                "Las y los estudiantes al ingresar, deberán tener habilidades para la comunicación oral y escrita, habilidades matemáticas, capacidades de reacción ante diferentes situaciones con actitud proactiva y responsable. Ing. Industrial Las y los estudiantes al ingresar deberán tener conocimientos de cultura general; así como habilidades matemáticas y de comunicación oral y escrita. Deberán contar con la capacidad de reacción ante diferentes situaciones con actitud proactiva y responsable.",
+                "Afinidad para vincular conocimientos de cultura general. Habilidades y gusto por las matemáticas y la física. Capacidad de reacción ante diferentes situaciones con actitud proactiva y responsable. Tener iniciativa y contar con la capacidad para establecer relaciones interpersonales, trabajo en equipo.",
+                "Las y los estudiantes al ingresar deberán tener habilidades matemáticas, conocimientos básicos de física, química y computación, habilidad para la comunicación oral y escrita, interés por el funcionamiento de máquinas, mecanismos y procesos industriales, inclinación personal por indagar y usar los avances tecnológicos, pensamiento analítico y sintético, capacidad de toma de decisiones, resolución de problemas y capacidad creativa.",
+                "Al ingresar el estudiante deberá tener conocimientos básicos de física, química y matemáticas, así como la capacidad para analizar y aplicar la información específica, comunicar correctamente sus ideas en forma oral y escrita con pensamiento lógico matemático y capacidad para trabajar en equipo.",
+                "Capacidad para integrar soluciones tecnológicas innovadoras. Disciplina en el cumplimiento de las normas de convivencia, el medio ambiente y la libertad. Habilidad de emprendimiento y gestión para incursionar en el sector de los negocios tecnológicos de semiconductores.",
+                "El y la estudiante al ingresar, deberá tener habilidades matemáticas y lógicas, capacidad de análisis y síntesis de información, habilidades de investigación, así como interés por la computación y la programación, disposición para trabajar en equipo y sentido de compromiso social."
+        };
 
         // Genera e escribe los inserts para la tabla 'cuestionario' en el archivo
         String[] preguntas = {
@@ -153,12 +175,6 @@ public class GeneradorInserts {
                 "¿Tienes un pensamiento matemático-lógico sólido?"
         };
 
-        for (int i = 0; i < preguntas.length; i++) {
-            String insertCuestionario = String.format("INSERT INTO cuestionario (pregunta) VALUES ('%s');",
-                    preguntas[i]);
-            writer.write(insertCuestionario + "\n");
-        }
-
         // Genera e escribe los inserts para la tabla 'respuesta' en el archivo
         String[] respuestas = {
                 "a) Pasatiempos relacionados con la fotografía y la edición de imágenes, lo que me hace considerar una carrera en diseño gráfico o fotografía.",
@@ -238,6 +254,24 @@ public class GeneradorInserts {
                 "bw) Disfruto del trabajo en equipo y tengo habilidades para liderar, considero carreras en gestión de equipos, liderazgo empresarial o emprendimiento.",
                 "bx) Mi interés por la moda sostenible y ética me lleva a considerar carreras en moda sostenible, diseño ético o gestión sostenible.",
         };
+
+        for (int i = 0; i < cantidad; i++) {
+            String insertUsuario = generarInsertAleatorio();
+            writer.write(insertUsuario + "\n");
+        }
+
+        for (int i = 0; i < carrera.length; i++) {
+            String insertPerfil = String.format(
+                    "INSERT INTO perfil (id_perfiles, descripcion, carrera) VALUES (%d, '%s', '%s');",
+                    i + 1, descripciones[i], carrera[i]);
+            writer.write(insertPerfil + "\n");
+        }
+
+        for (int i = 0; i < preguntas.length; i++) {
+            String insertCuestionario = String.format("INSERT INTO cuestionario (pregunta) VALUES ('%s');",
+                    preguntas[i]);
+            writer.write(insertCuestionario + "\n");
+        }
 
         for (int i = 0; i < respuestas.length; i++) {
             String insertRespuesta = String.format("INSERT INTO respuesta (id_respuesta, respuesta) VALUES (%d, '%s');",
