@@ -131,6 +131,118 @@ public class GeneradorInserts {
             "Fue una herramienta esencial para tomar decisiones informadas sobre mi educación superior."
     };
 
+    private static final String[] ESTADOS = { "PENDIENTE" };
+
+    private static final String[] FORTALEZAS = {
+            "Comunicación efectiva",
+            "Resolución de problemas",
+            "Trabajo en equipo",
+            "Liderazgo",
+            "Creatividad",
+            "Adaptabilidad",
+            "Organización",
+            "Pensamiento analítico",
+            "Empatía",
+            "Toma de decisiones",
+            "Innovación",
+            "Gestión del tiempo",
+            "Colaboración",
+            "Aprendizaje rápido",
+            "Persistencia",
+            "Auto-motivación",
+            "Ética laboral",
+            "Habilidades interpersonales",
+            "Optimismo",
+            "Manejo del estrés",
+            "Tolerancia a la ambigüedad",
+            "Autenticidad",
+            "Visión estratégica",
+            "Capacidad de delegación"
+    };
+
+    private static final String[] OPORTUNIDADES = {
+            "Desarrollo profesional continuo",
+            "Networking",
+            "Educación adicional",
+            "Participación en proyectos desafiantes",
+            "Expansión de habilidades técnicas",
+            "Mentoría",
+            "Participación en conferencias",
+            "Exploración de nuevas tecnologías",
+            "Desarrollo de habilidades de presentación",
+            "Liderar equipos multidisciplinarios",
+            "Iniciar un proyecto propio",
+            "Trabajo internacional",
+            "Colaboración con expertos del sector",
+            "Participación en programas de voluntariado",
+            "Incorporación de tecnologías emergentes",
+            "Desarrollo de habilidades de negociación",
+            "Participación en grupos de estudio",
+            "Exploración de nuevas metodologías",
+            "Ingreso a programas de liderazgo",
+            "Participación en eventos de la industria",
+            "Desarrollo de habilidades de mentoría",
+            "Exploración de nuevos mercados",
+            "Inversión en educación online",
+            "Participación en comunidades profesionales"
+    };
+
+    private static final String[] DEBILIDADES = {
+            "Falta de experiencia en ciertas tecnologías",
+            "Dificultad para delegar tareas",
+            "Procrastinación",
+            "Dificultad para decir 'no'",
+            "Impaciencia",
+            "Resistencia al cambio",
+            "Falta de habilidades técnicas específicas",
+            "Perfeccionismo",
+            "Baja tolerancia al estrés",
+            "Falta de habilidades de comunicación",
+            "Poca confianza en la toma de decisiones",
+            "Falta de habilidades de liderazgo",
+            "Dificultad para recibir críticas",
+            "Baja resistencia a la ambigüedad",
+            "Falta de habilidades de trabajo en equipo",
+            "Falta de habilidades analíticas",
+            "Exceso de autocrítica",
+            "Dificultad para admitir errores",
+            "Baja adaptabilidad",
+            "Falta de habilidades interpersonales",
+            "Tendencia a la distracción",
+            "Dificultad para priorizar tareas",
+            "Falta de habilidades organizativas",
+            "Tendencia a la procrastinación",
+            "Excesiva autocrítica"
+    };
+
+    private static final String[] AMENAZAS = {
+            "Cambios en la industria",
+            "Competencia fuerte",
+            "Avances tecnológicos rápidos",
+            "Crisis económica",
+            "Escasez de recursos",
+            "Cambios en la legislación",
+            "Inestabilidad política",
+            "Desastres naturales",
+            "Cambio en las tendencias del mercado",
+            "Problemas de seguridad cibernética",
+            "Reputación de la empresa en riesgo",
+            "Globalización de la competencia",
+            "Problemas de cumplimiento normativo",
+            "Conflictos internos en la empresa",
+            "Fluctuaciones en la demanda del mercado",
+            "Cambios en las preferencias del consumidor",
+            "Problemas de calidad del producto",
+            "Desafíos de gestión de personal",
+            "Innovaciones disruptivas",
+            "Cambios en las políticas gubernamentales",
+            "Problemas de cadena de suministro",
+            "Desafíos medioambientales",
+            "Problemas financieros",
+            "Inestabilidad en la cadena de valor",
+            "Riesgos geopolíticos"
+    };
+
     public static void main(String[] args) {
         try {
             generarInserts();
@@ -410,6 +522,11 @@ public class GeneradorInserts {
             writer.write(insertCP + "\n");
         }
 
+        for (int i = 0; i < cantidad; i++) {
+            String insertCP = generarInsertAleatorioSugerencia(cantidad);
+            writer.write(insertCP + "\n");
+        }
+
         // Cierra el archivo
         writer.close();
     }
@@ -488,6 +605,27 @@ public class GeneradorInserts {
 
         return String.format("INSERT INTO usuario_cuestionario (id_cuestionario, id_usuario) VALUES (%d, %d);",
                 idPregunta, idUsuario);
+    }
+
+    private static int contadorSugerencia = 1; // Variable para mantener el contador de carreras
+
+    private static String generarInsertAleatorioSugerencia(int cantidadUsuarios) {
+        int id_Sugerencia = contadorSugerencia++; // Incrementa el contador de carreras
+        Random random = new Random();
+
+        String fortaleza = FORTALEZAS[random.nextInt(FORTALEZAS.length)];
+        String oportunidad = OPORTUNIDADES[random.nextInt(OPORTUNIDADES.length)];
+        String debilidad = DEBILIDADES[random.nextInt(DEBILIDADES.length)];
+        String amenaza = AMENAZAS[random.nextInt(AMENAZAS.length)];
+
+        int idFeedback = random.nextInt(100); // Ajustar según la cantidad de feedbacks disponibles
+
+        return String.format(
+                "INSERT INTO sugerenciaFODA (id_Sugerencia,fortaleza, oportunidad, debilidad, amenaza, id_feedback, estatus) "
+                        +
+                        "VALUES ('%s','%s', '%s', '%s', '%s', %d, '%s');",
+                id_Sugerencia, fortaleza, oportunidad, debilidad, amenaza, idFeedback,
+                ESTADOS[0]);
     }
 
 }
